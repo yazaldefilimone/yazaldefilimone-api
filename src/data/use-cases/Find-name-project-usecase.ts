@@ -10,10 +10,10 @@ export class FindNameProjectUseCase implements IFindNameProjectUseCase {
     this.projectRepository = projectRepository;
   }
 
-  async perform({ name }: IFindNameProjectUseCase.Input): IFindNameProjectUseCase.Output {
-    if (!name) return left(new InvalidParamError('name'));
+  async perform({ title }: IFindNameProjectUseCase.Input): IFindNameProjectUseCase.Output {
+    if (!title) return left(new InvalidParamError('title'));
 
-    const projects = await this.projectRepository.findByName({ name });
+    const projects = await this.projectRepository.findByTitle({ title });
 
     return right(projects);
   }

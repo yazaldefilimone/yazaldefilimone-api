@@ -6,6 +6,6 @@ export interface IFindNameProjectUseCase {
   perform: (data: IFindNameProjectUseCase.Input) => IFindNameProjectUseCase.Output;
 }
 export namespace IFindNameProjectUseCase {
-  export type Input = { name: string };
+  export type Input = { title: string };
   export type Output = Promise<Either<InvalidParamError, ProjectStore[]>>;
 }
