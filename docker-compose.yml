@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres
+    container_name: blog-postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=blog
+    networks:
+      - blog_networks
+    volumes:
+      - blog_postgres_db_data:/var/lib/postgres
+networks:
+  blog_networks:
+    driver: bridge
+volumes:
+  blog_postgres_db_data:
