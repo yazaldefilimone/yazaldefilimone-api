@@ -3,12 +3,8 @@ import { ProjectStore } from '@/domain/entities';
 import { prismaClient } from '@/infra/prisma/client';
 
 export class ProjectRepository implements IProjectRepository {
-  private readonly projectSchema: typeof prismaClient.project;
-  constructor() {
-    this.projectSchema = prismaClient.project;
-  }
   async add(data: IProjectRepository.Input): Promise<{ id: string }> {
-    const project = await this.projectSchema.create({
+    const project = await prismaClient.project.create({
       data,
       select: {
         id: true,
@@ -19,7 +15,7 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   async findByTitle(data: { title: string }): IProjectRepository.OutputAll {
-    const projects = (await this.projectSchema.findMany({
+    const projects = (await prismaClient.project.findMany({
       where: {
         title: {
           contains: data.title,
@@ -37,7 +33,7 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   async findByTech({ tech }: { tech: string }): IProjectRepository.OutputAll {
-    const projects = await this.projectSchema.findMany({
+    const projects = await prismaClient.project.findMany({
       include: {
         stack: true,
       },
@@ -49,12 +45,12 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   async findAll(): Promise<ProjectStore[]> {
-    const projects: any = await this.projectSchema.findMany();
+    const projects: any = await prismaClient.project.findMany();
     return projects;
   }
 
   async findByRepo(data: { repo: string }): IProjectRepository.Output {
-    const project = (await this.projectSchema.findUnique({
+    const project = (await prismaClient.project.findUnique({
       where: {
         repo: data.repo,
       },
@@ -64,7 +60,7 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   async delete(data: { id: string }): Promise<void> {
-    await this.projectSchema.delete({
+    await prismaClient.project.delete({
       where: {
         id: data.id,
       },
