@@ -3,9 +3,9 @@ import { IController, HttpResponse, ok, serverError, badRequest } from '@/presen
 
 export class CreateProjectController implements IController {
   constructor(private readonly ICreateProjectUseCase: ICreateProjectUseCase) {}
-  async handle(data: any): Promise<HttpResponse> {
+  async handle(request: any): Promise<HttpResponse> {
     try {
-      const result = await this.ICreateProjectUseCase.perform(data);
+      const result = await this.ICreateProjectUseCase.perform(request.body);
       if (result.isLeft()) {
         return badRequest(result.value);
       }
