@@ -2,7 +2,7 @@ import { Either } from '@/shared/error-handler/either';
 import { AlreadyExistsError, InvalidParamError } from '@/domain/errors';
 
 export interface ICreateProjectUseCase {
-  perform: (data: ICreateProjectUseCase.Input) => Promise<ICreateProjectUseCase.Output>;
+  perform: (data: ICreateProjectUseCase.Input) => ICreateProjectUseCase.Output;
 }
 export namespace ICreateProjectUseCase {
   export type Input = {
