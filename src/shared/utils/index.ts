@@ -4,11 +4,7 @@ type SerializePaginationParams = {
   defaultLimit?: number;
 };
 
-export function serializePagination({
-  page,
-  limit,
-  defaultLimit = 10,
-}: SerializePaginationParams): {
+export function serializePagination({ page, limit, defaultLimit = 4 }: SerializePaginationParams): {
   page: number;
   limit: number;
 } {
