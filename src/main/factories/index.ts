@@ -1,1 +1,1 @@
-export * from './create-project-factory';
+export * from './project-factory';
