@@ -25,8 +25,6 @@ export class ProjectRepository implements IProjectRepository {
       orderBy: {
         title: 'asc',
       },
-      skip: 0,
-      take: 4,
     })) as any;
 
     return projects;
@@ -44,8 +42,14 @@ export class ProjectRepository implements IProjectRepository {
     return filterProjects;
   }
 
-  async findAll(): Promise<ProjectStore[]> {
-    const projects: any = await prismaClient.project.findMany();
+  async findAll(data?: { page: number; limit: number }): Promise<ProjectStore[]> {
+    const projects: any = await prismaClient.project.findMany({
+      orderBy: {
+        title: 'asc',
+      },
+      skip: data.page,
+      take: data.limit,
+    });
     return projects;
   }
 
