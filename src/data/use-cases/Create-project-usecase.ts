@@ -22,10 +22,16 @@ export class CreateProjectUseCase implements ICreateProjectUseCase {
 
     if (!data.banner) return left(new InvalidParamError('banner'));
 
-    const isExists = await this.projectRepository.findByRepo({ repo: data.repo });
+    const isExistsRepo = await this.projectRepository.findByRepo({ repo: data.repo });
 
-    if (isExists) {
-      return left(new AlreadyExistsError('project'));
+    if (isExistsRepo) {
+      return left(new AlreadyExistsError('url repository'));
+    }
+
+    const isExistsTitle = await this.projectRepository.findByTitle({ title: data.title });
+
+    if (isExistsTitle.length > 0) {
+      return left(new AlreadyExistsError('title'));
     }
 
     const project = await this.projectRepository.add(data);
