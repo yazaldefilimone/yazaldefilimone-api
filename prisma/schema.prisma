@@ -17,7 +17,7 @@ model Project {
   libraries   String[]
   description String
   banner      String
-  url         String   @unique
+  url         String
   repo        String   @unique
   createdAt   DateTime @default(now())
 
@@ -29,7 +29,7 @@ model Post {
   tech      String
   title     String
   content   String
-  banner    String   @unique
+  banner    String
   createdAt DateTime @default(now())
 
   @@map("post")
