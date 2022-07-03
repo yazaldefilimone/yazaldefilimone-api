@@ -47,7 +47,7 @@ export class ProjectRepository implements IProjectRepository {
       orderBy: {
         title: 'asc',
       },
-      skip: data.page,
+      skip: (data.page - 1) * data.limit,
       take: data.limit,
     });
     return projects;
