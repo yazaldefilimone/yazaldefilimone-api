@@ -42,7 +42,7 @@ export class ProjectRepository implements IProjectRepository {
     return filterProjects;
   }
 
-  async findAll(data?: { page: number; limit: number }): Promise<ProjectStore[]> {
+  async findAll(data: { page: number; limit: number }): Promise<ProjectStore[]> {
     const projects: any = await prismaClient.project.findMany({
       orderBy: {
         title: 'asc',
