@@ -6,6 +6,7 @@ export const expressAdapter = (controller: IController) => {
     const data = {
       body: request.body,
       params: request.params,
+      query: request.query,
     };
     const httpResponse = await controller.handle(data);
 
