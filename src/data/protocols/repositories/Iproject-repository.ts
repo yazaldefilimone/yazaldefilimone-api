@@ -4,7 +4,7 @@ export interface IProjectRepository {
   add: (data: IProjectRepository.Input) => Promise<{ id: string }>;
   findByTitle: (data: { title: string }) => IProjectRepository.OutputAll;
   findByTech: (data: { tech: string }) => IProjectRepository.OutputAll;
-  findAll: () => Promise<ProjectStore[]>;
+  findAll: (data?: { page: number; limit: number }) => Promise<ProjectStore[]>;
   findByRepo: (data: { repo: string }) => IProjectRepository.Output;
   delete: (data: { id: string }) => Promise<void>;
 }
