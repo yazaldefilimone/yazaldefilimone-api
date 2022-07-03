@@ -11,5 +11,6 @@ const projectRouter = Router();
 
 projectRouter.post('/create', expressAdapter(makeCreateProjectFactory()));
 projectRouter.get('/all', expressAdapter(makeFindProjectFactory()));
+projectRouter.get('/find-title/:title', expressAdapter(makeFindTitleProjectFactory()));
 
 export { projectRouter };
